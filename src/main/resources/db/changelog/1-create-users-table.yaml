@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-user-table
+      author: ezequiel.coronel
+
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2-create-users-table-indexes
+      author: ezequiel.coronel
+
+      changes:
+        - createIndex:
+            tableName: users
+            indexName: username_users_index
+            columns:
+              - column:
+                  name: username

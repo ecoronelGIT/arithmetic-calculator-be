@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-records-table
+      author: ezequiel.coronel
+
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: amount
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_balance
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: operation_response
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+              - column:
+                  name: operation_id
+                  type: uuid
+
+  - changeSet:
+      id: 2-create-users-foreign-constraint
+      author: ezequiel.coronel
+
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: records
+            baseTableSchemaName: public
+            constraintName: fk_users_id_key
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: users
+            referencedTableSchemaName: public
+
+  - changeSet:
+      id: 3-create-operations-foreign-constraint
+      author: ezequiel.coronel
+
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: operation_id
+            baseTableName: records
+            baseTableSchemaName: public
+            constraintName: fk_operations_id_key
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: operations
+            referencedTableSchemaName: public

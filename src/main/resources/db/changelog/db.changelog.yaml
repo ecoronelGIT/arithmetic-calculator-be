@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - objectQuotingStrategy: LEGACY
+  - include:
+      file: ./1-create-users-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: ./2-create-operations-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: ./3-create-records-table.yaml
+      relativeToChangelogFile: true

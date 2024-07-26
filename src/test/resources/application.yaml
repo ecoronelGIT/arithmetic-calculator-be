@@ -1,0 +1,39 @@
+management:
+  endpoints:
+    web:
+      enabled: true
+      base-path: /
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 8081
+
+spring:
+  jackson:
+    time-zone: UTC
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog.yaml
+  application:
+    name: XFactor Mailer Outbound Adapter
+  devtools:
+    livereload:
+      enabled: false
+    remote:
+      restart:
+        enabled: false
+      secret: <redacted>
+  datasource:
+    url: jdbc:h2:mem:db;MODE=MySQL
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
