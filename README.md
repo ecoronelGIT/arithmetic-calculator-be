@@ -1,2 +1,2 @@
 # arithmetic-calculator-be
-Rest API for an Arithmetic Calculator
+Rest API for User Arithmetic Calculator Microservice
