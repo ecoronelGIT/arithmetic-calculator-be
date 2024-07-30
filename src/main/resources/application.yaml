@@ -10,7 +10,7 @@ management:
       show-details: always
 
 server:
-  port: ${SERVER_PORT}
+  port: ${SERVER_PORT:8082}
 
 spring:
   jackson:
@@ -20,17 +20,10 @@ spring:
     change-log: classpath:db/changelog/db.changelog.yaml
   application:
     name: XFactor Mailer Outbound Adapter
-  devtools:
-    livereload:
-      enabled: false
-    remote:
-      restart:
-        enabled: false
-      secret: <redacted>
   datasource:
-    url: jdbc:mysql://localhost:3306/db
-    username: user
-    password: password
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:db-users}?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:password}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
